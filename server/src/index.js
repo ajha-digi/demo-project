@@ -1,8 +1,10 @@
 import express from "express";
 import path from "path";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 // Load environment variables from .env file
 dotenv.config();
+
+import { connectDB } from "./config/db";
 
 const app = express();
 const port = process.env.SERVER_PORT || 4000;
@@ -16,6 +18,13 @@ app.get("/", (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+(async () => {
+  try {
+    await connectDB();
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  } catch (error) {
+    console.error('Error starting server:', error);
+  }
+})();
