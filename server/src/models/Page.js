@@ -18,6 +18,10 @@ const pageSchema = new mongoose.Schema(
       type: Buffer,
       required: true,
     },
+    imageType : {
+      type: String,
+      required: false,
+    },
     updatedBy: {
       type: String, // Store user details as JSON string
     },
