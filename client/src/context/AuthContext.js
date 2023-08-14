@@ -48,7 +48,6 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       const response = await authService.register(userData);
-      debugger;
       const { token, user } = response.data;
       setAuthToken(token);
       setUser(user);
@@ -58,8 +57,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const uploadImage = async (userData) => {
+    try {
+      const response = await authService.uploadImage(userData);
+      debugger;
+    } catch (error) {
+      console.error("Registration failed:", error);
+      logout();
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ authToken, user, login, logout, register }}>
+    <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage }}>
       {children}
     </AuthContext.Provider>
   );
