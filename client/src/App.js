@@ -10,9 +10,9 @@ function App() {
 
   return (
     <div>
-      <Registration />
+      {/* <Registration />
       <Login />
-      <AdminDasboard />
+      <AdminDasboard /> */}
       <Home />
     </div>
   );
