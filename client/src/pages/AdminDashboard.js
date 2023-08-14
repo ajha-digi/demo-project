@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/RootContext";
+import React, { useState } from "react";
+import { useAuth } from "../Hooks/AuthHook";
 
 const AdminDasboard = () => {
 
-  const { uploadImage } = useContext(AuthContext);
+  const { uploadImage } = useAuth();
 
   const [formData, setFormData] = useState({
     title: "",

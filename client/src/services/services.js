@@ -34,6 +34,15 @@ const authService = {
     }
   },
 
+  home : async (userData) => {
+    try {
+      const response = await axiosInstance.get(`${endPoint}/user/pages/two`, userData);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  },
+
 };
 
 export default authService;

@@ -5,12 +5,12 @@ import authService from "../services/services";
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
   const [user, setUser] = useState(null);
+  const [data, setData] = useState([])
 
   // Load user and token from session storage on app start
   useEffect(() => {
     const savedToken = sessionStorage.getItem("authToken");
-    const savedUser =
-      sessionStorage.getItem("user") !== "undefined" &&
+    const savedUser = sessionStorage.getItem("user") !== "undefined" &&
       JSON.parse(sessionStorage.getItem("user"));
 
     if (savedToken) {
@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
   const login = async (userData) => {
     try {
       const response = await authService.login(userData);
-      debugger;
       const { token, user } = response.data;
       setAuthToken(token);
       setUser(user);
@@ -67,8 +66,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const home = async (userData) => {
+    try {
+      const response = await authService.home(userData);
+      setData([response.data]);
+    } catch (error) {
+      console.error("Registration failed:", error);
+      logout();
+    }
+  };
+
+
   return (
-    <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage }}>
+    <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage, home, data }}>
       {children}
     </AuthContext.Provider>
   );

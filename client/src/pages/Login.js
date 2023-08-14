@@ -1,12 +1,9 @@
 import React, { useState, useContext } from "react";
-import { AuthContext } from "../context/RootContext";
 import { useAuth } from "../Hooks/AuthHook";
 import { setAuthToken } from "../services/axiosInterceptor";
 
 function Login() {
-  const { authToken } = useAuth();
-
-  const { login } = useContext(AuthContext);
+  const { authToken, login } = useAuth();
 
   // Set the auth token if available
   if (authToken) {
