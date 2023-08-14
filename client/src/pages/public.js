@@ -3,6 +3,7 @@ import { useAuth } from '../Hooks/AuthHook';
 
 function Home() {
     const { data, home } = useAuth();
+    
     useEffect(()=>{
         home()
     },[])
