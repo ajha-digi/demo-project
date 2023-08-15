@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import { useAuth } from '../Hooks/AuthHook';
 
-import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+// import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import AdminDasboard from './AdminDashboard';
 import Login from './Login';
 import Registration from './Registration';
@@ -18,7 +18,7 @@ function Home() {
     <>
         {/* public
         {JSON.stringify(data)} */}
-      <Router>
+      {/* <Router>
         <div className="App">
             <ul className="navbar">
             <li>
@@ -41,7 +41,9 @@ function Home() {
                 <Route exact path='/AdminDasboard' element={< AdminDasboard/>}></Route>
         </Routes>
         </div>
-      </Router>
+      </Router> */}
+
+      public page
     </>
   )
 }

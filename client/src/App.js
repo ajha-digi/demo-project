@@ -1,19 +1,29 @@
 import React from "react";
-import Registration from "./pages/Registration"
-import "./App.css";
-import Login from "./pages/Login";
-import AdminDasboard from "./pages/AdminDashboard";
-import Home from "./pages/public";
+import { Routes, Route } from "react-router-dom";
+import { Protected } from "./routes/ProtectedRoutes";
+import { routes } from "./routes";
 
+import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
-
   return (
-    <div>
-      {/* <Registration />
-      <Login />
-      <AdminDasboard /> */}
-      <Home />
+    <div className="App">
+      <Navbar />
+      <Routes>
+        {routes.map(({ path, Component, isProtected, isExact }) => (
+          <Route
+            key={path}
+            exact={isExact}
+            path={path}
+            element={
+              <Protected isProtected={isProtected}>
+                <Component />
+              </Protected>
+            }
+          />
+        ))}
+      </Routes>
     </div>
   );
 }
