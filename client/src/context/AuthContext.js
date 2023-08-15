@@ -40,6 +40,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("user");
     setAuthToken(null);
     setUser(null);
   };
@@ -59,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   const uploadImage = async (userData) => {
     try {
       const response = await authService.uploadImage(userData);
-      debugger;
+      console.log(response);
     } catch (error) {
       console.error("Registration failed:", error);
       logout();
@@ -69,7 +71,7 @@ export const AuthProvider = ({ children }) => {
   const home = async (userData) => {
     try {
       const response = await authService.home(userData);
-      setData([response.data]);
+      setData(response.data);
     } catch (error) {
       console.error("Registration failed:", error);
       logout();

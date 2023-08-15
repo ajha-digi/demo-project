@@ -33,8 +33,53 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <>
+        <div className="limiter">
+          <div className="container-login100">
+            <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+              <form className="login100-form validate-form" onSubmit={handleSubmit}>
+                <span className="login100-form-title p-b-49">LOGIN</span>
+                <div
+                  className="wrap-input100 validate-input m-b-23"
+                >
+                  <span className="label-input100">Username</span>
+                  <input
+                    className="input100"
+                    type="text"
+                    name="username"
+                    placeholder="Type your username"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div
+                  className="wrap-input100 validate-input"
+                >
+                  <span className="label-input100">Password</span>
+                  <input
+                    className="input100"
+                    type="password"
+                    name="password"
+                    placeholder="Type your password"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="container-login100-form-btn">
+                  <div className="wrap-login100-form-btn">
+                    <div className="login100-form-bgbtn"></div>
+                    <button
+                      className="login100-form-btn"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </div>                
+              </form>
+            </div>
+          </div>
+        </div>
+        {/* <form onSubmit={handleSubmit}>
+       <input
         type="text"
         name="username"
         placeholder="Username"
@@ -47,8 +92,11 @@ function Login() {
         onChange={handleChange}
       />
       <button type="submit">Login</button>
-    </form>
+    </form> */}
+    </>
   );
 }
 
 export default Login;
+
+ 
