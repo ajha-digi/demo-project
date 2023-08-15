@@ -40,6 +40,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("user");
     setAuthToken(null);
     setUser(null);
   };
