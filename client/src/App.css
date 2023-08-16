@@ -29,6 +29,7 @@ li a {
   margin: 0 auto;
   background-color: #f5cdea;
   text-align: center;
+  height: 820px;
 }
 
 .limiter-admin {
@@ -204,4 +205,9 @@ li a {
   height: 55px;
   background: 0 0;
   padding: 0 7px 0 43px;
+}
+
+#page{
+  width:200px;
+  height:30px;
 }

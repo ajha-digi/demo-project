@@ -69,20 +69,6 @@ const AdminDasboard = () => {
                 />
               </div>
               <div className="wrap-input100 validate-input m-b-23">
-                <label for="page">Choose a page:</label>
-
-                <select
-                  name="page"
-                  id="page"
-                  value={formData.page}
-                  onChange={handleInputChange}
-                >
-                  <option value="home">Home</option>
-                  <option value="about-us">About Us</option>
-                  <option value="contact-us">Contact Us</option>
-                </select>
-              </div>
-              <div className="wrap-input100 validate-input m-b-23">
                 <span className="label-input100">Flag</span>
                 <input
                   className="input100"
@@ -92,11 +78,27 @@ const AdminDasboard = () => {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="">
+              <div className="" style={{ padding: "20px 20px 40px 0px" }}>
+                <span className="label-input100" style={{ padding: "20px" }}>
+                  Page :
+                </span>
+                <select
+                  name="page"
+                  id="page"
+                  style={{ padding: "20px" }}
+                  value={formData.page}
+                  onChange={handleInputChange}
+                >
+                  <option value="home">Home</option>
+                  <option value="about-us">About Us</option>
+                  <option value="contact-us">Contact Us</option>
+                </select>
+              </div>
+              <div className="" style={{ padding: "20px 20px 20px 100px" }}>
                 <span className="label-input100">Image :</span>
                 <input
                   className=""
-                  style={{ padding: "50px" }}
+                  style={{ padding: "20px" }}
                   type="file"
                   name="image"
                   onChange={handleFileChange}

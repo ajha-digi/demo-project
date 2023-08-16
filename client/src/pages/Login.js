@@ -78,10 +78,12 @@ function Login() {
                   </button>
                 </div>
               </div>
+              <span className="label-input100">
+              <Link to="/register">Register Yourself</Link>
+              </span>
             </form>
           </div>
         </div>
-        <Link to="/register">Register Yourself</Link>
       </div>
     </div>
   );
