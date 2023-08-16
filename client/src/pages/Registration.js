@@ -121,11 +121,14 @@ function Registration() {
                       Register
                     </button>
                   </div>
-                </div>                
+                </div>  
+                  <span className="label-input100">
+                  <Link to="/login">Back to Login</Link>
+                  </span>                      
               </form>
             </div>
           </div>
-          <Link to="/login">Back to Login</Link>
+         
         </div>
     </>
   );

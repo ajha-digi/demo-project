@@ -5,7 +5,7 @@ function PageNoteFound() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div style={{height:"300px"}}>
       <h3>Page Note Found</h3>
       <button onClick={()=>navigate('/')}>Back to Home</button>
     </div>
