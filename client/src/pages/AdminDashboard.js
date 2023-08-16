@@ -79,13 +79,12 @@ const AdminDasboard = () => {
                 />
               </div>
               <div className="" style={{ padding: "20px 20px 40px 0px" }}>
-                <span className="label-input100" style={{ padding: "20px" }}>
+                <span className="label-input100">
                   Page :
                 </span>
                 <select
                   name="page"
                   id="page"
-                  style={{ padding: "20px" }}
                   value={formData.page}
                   onChange={handleInputChange}
                 >
