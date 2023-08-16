@@ -7,7 +7,6 @@ function Login() {
   const { authToken, login } = useAuth();
   const navigate = useNavigate();
 
-  // Set the auth token if available
   if (authToken) {
     setAuthToken(authToken);
   }

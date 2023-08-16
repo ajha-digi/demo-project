@@ -8,7 +8,6 @@ function Registration() {
   const { authToken, register } = useAuth();
   const navigate = useNavigate();
 
-  // Set the auth token if available
   if (authToken) {
     setAuthToken(authToken);
   }
