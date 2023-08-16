@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../Hooks/AuthHook";
-function Home() {
+
+function ContactUs() {
   const { data, dynamicPageData } = useAuth();
   console.log("data", data);
 
   useEffect(() => {
-    dynamicPageData("home");
+    dynamicPageData("contact-us");
   }, []);
 
   if (data && data.length < 1) {
@@ -15,11 +16,11 @@ function Home() {
 
   return (
     <div>
-      <p>public page</p>
+      <p>Contact us page</p>
       <h1>{title}</h1>
       <img src={imageDataUrl} alt={title} />
     </div>
   );
 }
 
-export default Home;
+export default ContactUs;

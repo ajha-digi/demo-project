@@ -2,6 +2,8 @@ import Home from "../pages/public";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 import AdminDasboard from "../pages/AdminDashboard";
+import AboutUs from "../pages/AboutUs";
+import ContactUs from "../pages/ContactUs";
 
 export const routes = [
   {
@@ -26,6 +28,18 @@ export const routes = [
     path: "/admin-dashboard",
     Component: AdminDasboard,
     isProtected: true,
+    isExact: true,
+  },
+  {
+    path: "/about-us",
+    Component: AboutUs,
+    isProtected: false,
+    isExact: true,
+  },
+  {
+    path: "/contact-us",
+    Component: ContactUs,
+    isProtected: false,
     isExact: true,
   },
 ];

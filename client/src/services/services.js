@@ -34,9 +34,9 @@ const authService = {
     }
   },
 
-  home : async (userData) => {
+  pageData : async (route='home') => {
     try {
-      const response = await axiosInstance.get(`${endPoint}/user/pages/about us`);
+      const response = await axiosInstance.get(`${endPoint}/user/pages/${route}`);
       return response;
     } catch (error) {
       throw error;

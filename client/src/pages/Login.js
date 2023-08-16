@@ -1,14 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../Hooks/AuthHook";
+import {useNavigate} from "react-router-dom";
 import { setAuthToken } from "../services/axiosInterceptor";
 
 function Login() {
   const { authToken, login } = useAuth();
+  const navigate = useNavigate();
 
   // Set the auth token if available
   if (authToken) {
     setAuthToken(authToken);
   }
+
+    useEffect(()=>{
+      if(authToken){
+        navigate('/admin-dashboard')
+      }
+    },[authToken])
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
