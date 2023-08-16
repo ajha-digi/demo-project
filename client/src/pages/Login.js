@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../Hooks/AuthHook";
-import {useNavigate} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { setAuthToken } from "../services/axiosInterceptor";
 
 function Login() {
@@ -12,11 +12,11 @@ function Login() {
     setAuthToken(authToken);
   }
 
-    useEffect(()=>{
-      if(authToken){
-        navigate('/admin-dashboard')
-      }
-    },[authToken])
+  useEffect(() => {
+    if (authToken) {
+      navigate("/admin-dashboard");
+    }
+  }, [authToken]);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -35,77 +35,57 @@ function Login() {
     e.preventDefault();
     try {
       await login(formData);
-      // history.push('/protected');
+      navigate("/admin-dashboard");
     } catch (error) {
       console.error("Login failed:", error);
     }
   };
 
   return (
-    <>
-        <div className="limiter">
-          <div className="container-login100">
-            <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-              <form className="login100-form validate-form" onSubmit={handleSubmit}>
-                <span className="login100-form-title p-b-49">LOGIN</span>
-                <div
-                  className="wrap-input100 validate-input m-b-23"
-                >
-                  <span className="label-input100">Username</span>
-                  <input
-                    className="input100"
-                    type="text"
-                    name="username"
-                    placeholder="Type your username"
-                    onChange={handleChange}
-                  />
+    <div>
+      <div className="limiter">
+        <div className="container-login100">
+          <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form
+              className="login100-form validate-form"
+              onSubmit={handleSubmit}
+            >
+              <span className="login100-form-title p-b-49">LOGIN</span>
+              <div className="wrap-input100 validate-input m-b-23">
+                <span className="label-input100">Username</span>
+                <input
+                  className="input100"
+                  type="text"
+                  name="username"
+                  placeholder="Type your username"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="wrap-input100 validate-input">
+                <span className="label-input100">Password</span>
+                <input
+                  className="input100"
+                  type="password"
+                  name="password"
+                  placeholder="Type your password"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="container-login100-form-btn">
+                <div className="wrap-login100-form-btn">
+                  <div className="login100-form-bgbtn"></div>
+                  <button className="login100-form-btn" type="submit">
+                    Login
+                  </button>
                 </div>
-                <div
-                  className="wrap-input100 validate-input"
-                >
-                  <span className="label-input100">Password</span>
-                  <input
-                    className="input100"
-                    type="password"
-                    name="password"
-                    placeholder="Type your password"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="container-login100-form-btn">
-                  <div className="wrap-login100-form-btn">
-                    <div className="login100-form-bgbtn"></div>
-                    <button
-                      className="login100-form-btn"
-                      type="submit"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </div>                
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
-        {/* <form onSubmit={handleSubmit}>
-       <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        onChange={handleChange}
-      />
-      <button type="submit">Login</button>
-    </form> */}
-    </>
+        <Link to="/register">Register Yourself</Link>
+      </div>
+    </div>
   );
 }
 
 export default Login;
-
- 

@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../Hooks/AuthHook";
 
 const AdminDasboard = () => {
-  const { uploadImage } = useAuth();
+  const { uploadImage, authToken } = useAuth();
+  const navigate = useNavigate();
+  console.log("authToken", authToken);
+  // Set the auth token if available
+  useEffect(() => {
+    if (!authToken) {
+      navigate("/login");
+    }
+  }, [authToken]);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -63,12 +73,16 @@ const AdminDasboard = () => {
               <div className="wrap-input100 validate-input m-b-23">
                 <label for="page">Choose a page:</label>
 
-                <select name="page" id="page" value={formData.page} onChange={handleInputChange}>
+                <select
+                  name="page"
+                  id="page"
+                  value={formData.page}
+                  onChange={handleInputChange}
+                >
                   <option value="home">Home</option>
                   <option value="about-us">About Us</option>
                   <option value="contact-us">Contact Us</option>
                 </select>
-
               </div>
               <div className="wrap-input100 validate-input m-b-23">
                 <span className="label-input100">Flag</span>

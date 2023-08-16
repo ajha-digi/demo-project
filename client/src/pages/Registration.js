@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../Hooks/AuthHook";
 import { setAuthToken } from "../services/axiosInterceptor";
 
+
 function Registration() {
   const { authToken, register } = useAuth();
+  const navigate = useNavigate();
 
   // Set the auth token if available
   if (authToken) {
     setAuthToken(authToken);
   }
+
+  useEffect(() => {
+    if (authToken) {
+      navigate("/admin-dashboard");
+    }
+  }, [authToken]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,7 +39,7 @@ function Registration() {
     e.preventDefault();
     try {
       await register(formData);
-      // history.push('/protected');
+      navigate("/admin-dashboard");
     } catch (error) {
       console.error("Registration failed:", error);
     }
@@ -116,41 +126,9 @@ function Registration() {
               </form>
             </div>
           </div>
+          <Link to="/login">Back to Login</Link>
         </div>
     </>
-    // <form onSubmit={handleSubmit}>
-    //   <input
-    //     type="text"
-    //     name="name"
-    //     placeholder="Name"
-    //     onChange={handleChange}
-    //   />
-    //   <input
-    //     type="email"
-    //     name="email"
-    //     placeholder="Email"
-    //     onChange={handleChange}
-    //   />
-    //   <input
-    //     type="text"
-    //     name="username"
-    //     placeholder="Username"
-    //     onChange={handleChange}
-    //   />
-    //   <input
-    //     type="password"
-    //     name="password"
-    //     placeholder="Password"
-    //     onChange={handleChange}
-    //   />
-    //   <input
-    //     type="password"
-    //     name="confirmPassword"
-    //     placeholder="Confirm Password"
-    //     onChange={handleChange}
-    //   />
-    //   <button type="submit">Register</button>
-    // </form>
   );
 }
 

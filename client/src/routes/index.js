@@ -4,6 +4,7 @@ import Registration from "../pages/Registration";
 import AdminDasboard from "../pages/AdminDashboard";
 import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
+import PageNoteFound from "../pages/404";
 
 export const routes = [
   {
@@ -41,5 +42,10 @@ export const routes = [
     Component: ContactUs,
     isProtected: false,
     isExact: true,
+  },
+  {
+    path: "*",
+    Component: PageNoteFound,
+    isProtected: false
   },
 ];
