@@ -1,10 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+
 import { Protected } from "./routes/ProtectedRoutes";
 import { routes } from "./routes";
 
 import "./App.css";
-import Navbar from "./components/Navbar";
 
 function App() {
   return (

@@ -68,9 +68,9 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const home = async (userData) => {
+  const dynamicPageData = async (route) => {
     try {
-      const response = await authService.home(userData);
+      const response = await authService.pageData(route);
       setData(response.data);
     } catch (error) {
       console.error("Registration failed:", error);
@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage, home, data }}>
+    <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage, dynamicPageData, data }}>
       {children}
     </AuthContext.Provider>
   );
