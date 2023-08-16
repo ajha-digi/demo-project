@@ -6,8 +6,7 @@ import { useAuth } from "../Hooks/AuthHook";
 const AdminDasboard = () => {
   const { uploadImage, authToken } = useAuth();
   const navigate = useNavigate();
-  console.log("authToken", authToken);
-  // Set the auth token if available
+
   useEffect(() => {
     if (!authToken) {
       navigate("/login");
@@ -17,7 +16,7 @@ const AdminDasboard = () => {
   const [formData, setFormData] = useState({
     title: "",
     page: "home",
-    flag: "", // Initialize the flag state
+    flag: "",
     image: null,
   });
 
@@ -35,7 +34,6 @@ const AdminDasboard = () => {
     event.preventDefault();
 
     const { title, page, flag, image } = formData;
-    debugger;
     const data = new FormData();
     data.append("title", title);
     data.append("page", page);
@@ -117,27 +115,6 @@ const AdminDasboard = () => {
         </div>
       </div>
     </>
-    // <div>
-    //   <form onSubmit={handleSubmit}>
-    //     <div>
-    //       <label>Title:</label>
-    //       <input type="text" name="title" value={formData.title} onChange={handleInputChange} />
-    //     </div>
-    //     <div>
-    //       <label>Page:</label>
-    //       <input type="text" name="page" value={formData.page} onChange={handleInputChange} />
-    //     </div>
-    //     <div>
-    //       <label>Flag:</label>
-    //       <input type="text" name="flag" value={formData.flag} onChange={handleInputChange} />
-    //     </div>
-    //     <div>
-    //       <label>Image:</label>
-    //       <input type="file" name="image" onChange={handleFileChange} />
-    //     </div>
-    //     <button type="submit">Upload</button>
-    //   </form>
-    // </div>
   );
 };
 

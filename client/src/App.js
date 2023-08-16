@@ -26,6 +26,9 @@ function App() {
           />
         ))}
       </Routes>
+      <footer className="navbar">
+        Hi this is simple footer
+      </footer>
     </div>
   );
 }

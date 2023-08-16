@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth } from "../Hooks/AuthHook";
 
 function AboutUs() {
-  const { data, dynamicPageData } = useAuth();
-  console.log("data", data);
-
+  const { authToken, data, dynamicPageData } = useAuth();
   useEffect(() => {
     dynamicPageData("about-us");
   }, []);
@@ -15,11 +13,12 @@ function AboutUs() {
   const { title, imageDataUrl } = data[0];
 
   return (
-    <div>
-      <p>About us page</p>
+    <>
       <h1>{title}</h1>
+      <h4>This is Static data for About us page</h4>
+      {authToken && <h5> Only Login user can see this on About us page </h5>}
       <img src={imageDataUrl} alt={title} />
-    </div>
+    </>
   );
 }
 
