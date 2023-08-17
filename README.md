@@ -44,25 +44,26 @@ This MERN app is designed to provide a content management system where an admin 
 
 MERN-App
 ├── client
-│ ├── public
-│ └── src
-│ ├── components
-│ ├── constant
-│ ├── context
-│ ├── Hooks
-│ ├── pages
-│ ├── routes
-│ └── services
+│   ├── public
+│   └── src
+│       ├── components
+│       ├── constant
+│       ├── context
+│       ├── Hooks
+│       ├── pages
+│       ├── routes
+│       └── services
 └── server
-├── build
-└── src
-├── config
-├── controllers
-├── middlewares
-├── models
-├── public
-├── routes
-└── util
+    ├── build
+    └── src
+        ├── config
+        ├── controllers
+        ├── middlewares
+        ├── models
+        ├── public
+        ├── routes
+        └── util
+
 
 # Running the App
 
