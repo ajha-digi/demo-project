@@ -11,7 +11,7 @@ function Home() {
     return <h2>Loading !!</h2>;
   }
 
-  const { title, imageDataUrl } = data[0];
+  const { title, html, imageDataUrl } = data[0];
 
   return (
     <>
@@ -23,6 +23,13 @@ function Home() {
         )
       }
       <img src={imageDataUrl} alt={title} />
+      {
+       html && (
+        <div
+          dangerouslySetInnerHTML={{__html: html}}
+        />
+       ) 
+      }
     </>
   );
 }

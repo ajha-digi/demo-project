@@ -14,6 +14,10 @@ const pageSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    html: {
+      type: String,
+      required: false,
+    },
     imageData: {
       type: Buffer,
       required: true,

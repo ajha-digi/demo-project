@@ -3,7 +3,7 @@ import { getFileContentType } from '../util';
 
 export const uploadFile = async (req, res) => {
   try {
-    const { title, page, flag } = req.body;
+    const { title, page, flag, html } = req.body;
     const imageData = req.file.buffer; // The actual image data
     const user = req.user;
 
@@ -12,7 +12,7 @@ export const uploadFile = async (req, res) => {
       const fileExtension = originalFilename.split('.').pop().toLowerCase(); // Get the extension in lowercase
   
       // Determine the content type based on the file extension
-      const contentType = getFileContentType(fileExtension);
+      // const contentType = getFileContentType(fileExtension);
 
     // Find an existing page with the same content
     const existingPage = await Page.findOne({ page });
@@ -21,6 +21,7 @@ export const uploadFile = async (req, res) => {
       // Update the existing page with the new data
       existingPage.title = title; // Update the title if needed
       existingPage.flag = flag;
+      existingPage.html = html;
       existingPage.imageData = imageData;
       existingPage.imageType = fileExtension;
       existingPage.updatedBy = JSON.stringify(user); 
@@ -31,6 +32,7 @@ export const uploadFile = async (req, res) => {
         title,
         page,
         flag,
+        html,
         imageData,
         imageType: fileExtension, 
         updatedBy: JSON.stringify(user),

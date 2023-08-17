@@ -12,6 +12,7 @@ export const getAllPagesByRoute = async (req, res) => {
       title: page.title,
       page: page.page,
       flag: page.flag,
+      html: page.html,
       updatedBy: {
         _id: page.updatedBy._id,
         username: page.updatedBy.username,
