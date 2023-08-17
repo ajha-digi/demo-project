@@ -52,6 +52,10 @@ MERN-App
 │       ├── Hooks
 │       ├── pages
 │       ├── routes
+|       ├── App.js
+|       ├── App.css
+|       ├── index.js
+|       ├── index.css
 │       └── services
 └── server
     ├── build
@@ -62,6 +66,10 @@ MERN-App
         ├── models
         ├── public
         ├── routes
+        ├── .babelrc
+        ├── .env
+        ├── webpack.config.js
+        ├── package.json
         └── util
 ```
 
