@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# MERN App Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### App Overview
 
-## Available Scripts
+This MERN app is designed to provide a content management system where an admin can create and manage various types of content, including HTML, media files, and text. The app includes authentication and authorization features to ensure secure access to different functionalities.
 
-In the project directory, you can run:
+##### Key Features
 
-### `npm start`
+- Admin Dashboard:
+  - The admin dashboard is protected and requires authentication to access.
+  - Admins can log in using their credentials to access the dashboard.
+- Admin Content Management:
+  - Admins have the ability to create and manage different types of content.
+  - The content can include HTML, media files (images, videos, etc.), and text.
+  - Admins can create rich and engaging content using HTML formatting.
+- User Content Viewing:
+  - Users (guests) can view content created by the admin.
+  - The content is presented based on certain conditions.
+- Content Visibility Conditions:
+  - Content visibility can be based on various conditions set by the admin.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+##### User Flow
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Admin Workflow:
+  - Admins log in to the admin dashboard using their credentials.
+  - Inside the dashboard, they can create new content items.
+  - They can write HTML code, upload media files, and add text to create engaging content.
+  - Admins can set visibility conditions for each content item.
+- User Workflow:
+  - Users can visit the app's main interface without needing to log in.
+  - Based on the visibility conditions set by the admin, users see different content items.
+  - Content might be tailored to specific user roles or other attributes.
 
-### `npm test`
+##### Additional Points
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- The app leverages JWT-based authentication for admin access, ensuring secure authentication.
+- Content management is dynamic, allowing admins to add, update content items.
+- Admins have the flexibility to change visibility conditions for content items as needed.
+- The app provides a seamless user experience, offering rich and diverse content to users.
+- Admins can utilize media files to create visually appealing content for better engagement.
+- Users can benefit from personalized content experiences based on their attributes and roles.
 
-### `npm run build`
+### Folder Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+MERN-App
+├── client
+│ ├── public
+│ └── src
+│ ├── components
+│ ├── constant
+│ ├── context
+│ ├── Hooks
+│ ├── pages
+│ ├── routes
+│ └── services
+└── server
+├── build
+└── src
+├── config
+├── controllers
+├── middlewares
+├── models
+├── public
+├── routes
+└── util
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Running the App
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To bootstrap the app, you need to open two separate terminals. Navigate to the server and client folders in each terminal:
 
-### `npm run eject`
+#### Terminal 1:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+ cd client
+ npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Terminal 2:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+  cd server
+  npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Server App
 
-## Learn More
+Inside sever app at root level create .env file and add
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+SERVER_PORT=8080
+JWT_SECRET=4f3eA$5*8_9bZc1D
+MONGO_URL=mongodb+srv://poc:S361qT0tguq0cEtY@cluster0.aqalfes.mongodb.net/?retryWrites=true&w=majority
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The server app is built using Express and includes the following dependencies:
 
-### Code Splitting
+- @babel/core: ^7.22.10
+- bcrypt: ^5.1.0
+- cors: ^2.8.5
+- express: ^4.18.2
+- jsonwebtoken: ^9.0.1
+- mongoose: ^7.4.3
+- multer: ^1.4.5-lts.1
+- webpack: ^5.88.2
+- concurrently: ^8.2.0
+- webpack-node-externals: ^3.0.0
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The server uses `JWT-based` authentication.
+To run the server app in development mode, use the following command:
 
-### Analyzing the Bundle Size
+```bash
+ npm run start:dev
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This will start the server on `http://localhost:8080`.
 
-### Making a Progressive Web App
+## Client App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The client app is built using React. Here are some of the key dependencies used:
 
-### Advanced Configuration
+- axios: ^1.4.0
+- react: ^18.2.0
+- react-dom: ^18.2.0
+- react-router-dom: ^6.15.0
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To run the client app, execute the following command:
 
-### Deployment
+```bash
+ npm run start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This will start the client app on `http://localhost:3000`.
