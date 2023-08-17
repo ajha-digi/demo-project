@@ -10,8 +10,8 @@ function ContactUs() {
   if (data && data.length < 1) {
     return <h2>Loading !!</h2>;
   }
-  const { title, imageDataUrl } = data[0];
-
+  const { title, html, imageDataUrl } = data[0];
+  
   return (
     <>
       <h1>{title}</h1>
@@ -22,6 +22,13 @@ function ContactUs() {
         )
       }
       <img src={imageDataUrl} alt={title} />
+      {
+       html && (
+        <div
+          dangerouslySetInnerHTML={{__html: html}}
+        />
+       ) 
+      }
     </>
   );
 }

@@ -16,6 +16,7 @@ const AdminDasboard = () => {
   const [formData, setFormData] = useState({
     title: "",
     page: "home",
+    html:"",
     flag: "",
     image: null,
   });
@@ -33,9 +34,10 @@ const AdminDasboard = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { title, page, flag, image } = formData;
+    const { title, html, page, flag, image } = formData;
     const data = new FormData();
     data.append("title", title);
+    data.append("html", html);
     data.append("page", page);
     data.append("flag", flag);
     data.append("image", image);
@@ -65,6 +67,16 @@ const AdminDasboard = () => {
                   type="text"
                   name="title"
                   value={formData.title}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="wrap-input100 validate-input m-b-23">
+                <span className="label-input100">Html</span>
+                <textarea
+                  className="input100"
+                  type="text"
+                  name="html"
+                  value={formData.html}
                   onChange={handleInputChange}
                 />
               </div>
