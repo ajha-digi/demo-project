@@ -41,7 +41,7 @@ This MERN app is designed to provide a content management system where an admin 
 - Users can benefit from personalized content experiences based on their attributes and roles.
 
 ### Folder Structure
-
+```
 MERN-App
 ├── client
 │   ├── public
@@ -63,7 +63,7 @@ MERN-App
         ├── public
         ├── routes
         └── util
-
+```
 
 # Running the App
 
