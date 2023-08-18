@@ -1,27 +1,55 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { navLists } from "../constant";
 import { useAuth } from "../Hooks/AuthHook";
 
 function Navbar() {
-  const { authToken, user, logout } = useAuth();
+  const { authToken, user, logout, dynamicPageData, data } = useAuth();
+  const { page } = useParams();
+  const { pathname } = useLocation();
 
-  const filteredNavLists = navLists.filter(({ path, title }) => {
-    if (authToken && user) {
-      return !(title === "Login" || title === "Register");
+  useEffect(() => {
+    if (!!page) {
+      dynamicPageData(page);
     }
-    return { path, title };
+  }, [page]);
+
+  if (pathname.includes("/admin-dashboard/preview/")) {
+    if (data && data.length < 1) {
+      return null;
+    }
+  }
+
+  const filteredNavLists = navLists.filter(({ title }) => {
+    if (authToken && user) {
+      return title === "Admin Dasboard";
+    }
+    return title === "Login";
   });
 
   return (
     <nav>
       <ul className="navbar">
-        {filteredNavLists.map(({ path, title }) => (
-          <li key={title}>
-            <Link to={path}>{title}</Link>
+        {pathname.includes("/admin-dashboard/preview/") ? (
+          <h4 style={{ color: "white" }}>{data[0]?.updatedBy?.name}</h4>
+        ) : (
+          filteredNavLists.map(({ path, title }) => (
+            <li key={title}>
+              <Link to={path}>{title}</Link>
+            </li>
+          ))
+        )}
+        {authToken && user && (
+          <li>
+            <span style={{ color: "white" }}>Welcome Back {user}</span>
+            <button className="log-out-btn" onClick={logout}>
+              Log out
+            </button>
           </li>
-        ))}
-        {authToken && user && <button onClick={logout}>Log out</button>}
+        )}
+        {pathname.includes("/admin-dashboard/preview/") && (
+          <h4 style={{ color: "white" }}>Preview page</h4>
+        )}
       </ul>
     </nav>
   );

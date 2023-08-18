@@ -20,17 +20,18 @@ const authService = {
     }
   },
 
-  uploadImage: async (data) => {
+  dynamicData: async (data) => {
     try {
       setAuthToken(sessionStorage.getItem("authToken"))
-      await axiosInstance.post(`${endPoint}/user/upload`, data, {
+
+      const resp = await axiosInstance.post(`${endPoint}/user/upload`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('Image uploaded successfully');
+      return resp;
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error('Error submitting data:', error);
     }
   },
 

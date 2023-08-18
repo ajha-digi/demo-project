@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../Hooks/AuthHook";
+import { capitalizeWords } from "../helper";
 
 const AdminDasboard = () => {
-  const { uploadImage, authToken } = useAuth();
+  const { authToken, submitAdminData, recentlyUploadedData } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,12 +14,30 @@ const AdminDasboard = () => {
     }
   }, [authToken]);
 
+  const [pageLists, setPageLists] = useState([
+    {
+      value: "home",
+      text: "Home",
+    },
+    {
+      value: "about-us",
+      text: "About Us",
+    },
+    {
+      value: "contact-us",
+      text: "Contact Us",
+    },
+  ]);
+  const [isAddPage, setIsAddPage] = useState(false);
+  const [isCreatePage, setIsCreatePage] = useState(false);
+  const [newPage, setNewPage] = useState("");
+  const [isPreview, setIsPreview] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     page: "home",
-    html:"",
-    flag: "",
-    image: null,
+    html: "",
+    css: "",
+    category: "a",
   });
 
   const handleInputChange = (event) => {
@@ -26,103 +45,153 @@ const AdminDasboard = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setFormData({ ...formData, image: file });
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { title, html, page, flag, image } = formData;
+    const { title, html, page, css, category } = formData;
     const data = new FormData();
     data.append("title", title);
     data.append("html", html);
     data.append("page", page);
-    data.append("flag", flag);
-    data.append("image", image);
+    data.append("css", css);
+    data.append("category", category);
 
     try {
-      await uploadImage(data);
-      console.log("Image uploaded successfully");
+      await submitAdminData(data);
+      setIsPreview(true);
+      alert("Data submitted successfully");
+      console.log("Data submitted successfully");
     } catch (error) {
       console.error("Error uploading image:", error);
     }
   };
 
+  const handleClick = (event, type) => {
+    event.preventDefault();
+    if (type === "create") {
+      if (!newPage) {
+        alert("Please enter page name");
+        return false;
+      }
+      setIsCreatePage(true);
+      setPageLists([
+        ...pageLists,
+        {
+          value: newPage.replace(/\s+/g, "-"),
+          text: capitalizeWords(newPage),
+        },
+      ]);
+      setFormData({
+        ...formData,
+        page: newPage.replace(/\s+/g, "-"),
+      });
+    } else {
+      setIsAddPage(true);
+    }
+    setNewPage("");
+  };
+
   return (
     <>
       <div className="limiter">
-        <div className="container-login100">
-          <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-            <form
-              className="login100-form validate-form"
-              onSubmit={handleSubmit}
-            >
-              <span className="login100-form-title p-b-49"> Admin Panel</span>
-              <div className="wrap-input100 validate-input m-b-23">
-                <span className="label-input100">Title</span>
-                <input
-                  className="input100"
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="wrap-input100 validate-input m-b-23">
-                <span className="label-input100">Html</span>
-                <textarea
-                  className="input100"
-                  type="text"
-                  name="html"
-                  value={formData.html}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="wrap-input100 validate-input m-b-23">
-                <span className="label-input100">Flag</span>
-                <input
-                  className="input100"
-                  type="text"
-                  name="flag"
-                  value={formData.flag}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="" style={{ padding: "20px 20px 40px 0px" }}>
-                <span className="label-input100">
-                  Page :
-                </span>
-                <select
-                  name="page"
-                  id="page"
-                  value={formData.page}
-                  onChange={handleInputChange}
-                >
-                  <option value="home">Home</option>
-                  <option value="about-us">About Us</option>
-                  <option value="contact-us">Contact Us</option>
-                </select>
-              </div>
-              <div className="" style={{ padding: "20px 20px 20px 100px" }}>
-                <span className="label-input100">Image :</span>
-                <input
-                  className=""
-                  style={{ padding: "20px" }}
-                  type="file"
-                  name="image"
-                  onChange={handleFileChange}
-                />
-              </div>
-              <div className="container-login100-form-btn">
-                <div className="wrap-login100-form-btn">
-                  <div className="login100-form-bgbtn"></div>
-                  <button className="login100-form-btn" type="submit">
-                    Upload
-                  </button>
+        <div className="">
+          <div className="">
+            {isPreview && (
+              <Link
+                to={`/admin-dashboard/preview/${recentlyUploadedData.page}?category=${recentlyUploadedData.category}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Preview
+              </Link>
+            )}
+
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="col">
+                  <label htmlFor="page">Select page</label>
+                  <select
+                    name="page"
+                    id="page"
+                    value={formData.page}
+                    onChange={handleInputChange}
+                  >
+                    {pageLists.map(({ text, value }) => (
+                      <option key={value} value={value}>
+                        {text}
+                      </option>
+                    ))}
+                  </select>
+                  {!isAddPage ? (
+                    <button onClick={(e) => handleClick(e, "add")}>
+                      Add New page
+                    </button>
+                  ) : (
+                    !isCreatePage && (
+                      <>
+                        <label htmlFor="Add new page">Select page</label>
+                        <input
+                          placeholder="Add new page"
+                          onChange={(e) => setNewPage(e.target.value)}
+                        />
+                        <button onClick={(e) => handleClick(e, "create")}>
+                          Create New page
+                        </button>
+                      </>
+                    )
+                  )}
+                </div>
+                <div className="col">
+                  <label htmlFor="title">Title</label>
+                  <input
+                    placeholder="Enter title"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
+              <div className="row">
+                <div className="col">
+                  <label htmlFor="html">Html code</label>
+                  <textarea
+                    name="html"
+                    value={formData.html}
+                    onChange={handleInputChange}
+                    rows="10"
+                    cols="35"
+                  />
+                </div>
+                <div className="col">
+                  <label htmlFor="css">css code</label>
+                  <textarea
+                    name="css"
+                    value={formData.css}
+                    onChange={handleInputChange}
+                    rows="10"
+                    cols="35"
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <label htmlFor="ctegory">Select Category</label>
+                  <select
+                    name="category"
+                    id="category"
+                    value={formData.category}
+                    onChange={handleInputChange}
+                  >
+                    <option key="a" value="a">
+                      A
+                    </option>
+                    <option key="b" value="b">
+                      B
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit"> Submit</button>
             </form>
           </div>
         </div>

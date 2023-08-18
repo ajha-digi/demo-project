@@ -5,7 +5,8 @@ import authService from "../services/services";
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
   const [user, setUser] = useState(null);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [recentlyUploadedData, setRecentlyUploadedData] = useState({});
 
   // Load user and token from session storage on app start
   useEffect(() => {
@@ -58,10 +59,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const uploadImage = async (userData) => {
+  const submitAdminData = async (userData) => {
     try {
-      const response = await authService.uploadImage(userData);
-      console.log(response);
+      const response = await authService.dynamicData(userData);
+      setRecentlyUploadedData(response?.data?.data);
     } catch (error) {
       console.error("Registration failed:", error);
       logout();
@@ -80,7 +81,8 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage, dynamicPageData, data }}>
+    // <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage, dynamicPageData, data }}>
+    <AuthContext.Provider value={{ authToken, user, login, logout, register, submitAdminData, dynamicPageData, data, recentlyUploadedData }}>
       {children}
     </AuthContext.Provider>
   );

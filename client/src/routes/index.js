@@ -1,18 +1,10 @@
-import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 import AdminDasboard from "../pages/AdminDashboard";
-import AboutUs from "../pages/AboutUs";
-import ContactUs from "../pages/ContactUs";
 import PageNoteFound from "../pages/404";
+import Preview from "../components/Preview";
 
 export const routes = [
-  {
-    path: "/",
-    Component: Home,
-    isProtected: false,
-    isExact: true,
-  },
   {
     path: "/login",
     Component: Login,
@@ -32,14 +24,8 @@ export const routes = [
     isExact: true,
   },
   {
-    path: "/about-us",
-    Component: AboutUs,
-    isProtected: false,
-    isExact: true,
-  },
-  {
-    path: "/contact-us",
-    Component: ContactUs,
+    path: "/admin-dashboard/preview/:page",
+    Component: Preview,
     isProtected: false,
     isExact: true,
   },
