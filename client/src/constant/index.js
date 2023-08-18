@@ -7,4 +7,8 @@ export const navLists = [
     path: "/admin-dashboard",
     title: "Admin Dasboard",
   },
+  {
+    path: "/preview",
+    title: "Preview",
+  },
 ];

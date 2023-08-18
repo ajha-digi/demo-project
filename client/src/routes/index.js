@@ -3,6 +3,7 @@ import Registration from "../pages/Registration";
 import AdminDasboard from "../pages/AdminDashboard";
 import PageNoteFound from "../pages/404";
 import Preview from "../components/Preview";
+import PreviewPage from "../pages/Preview";
 
 export const routes = [
   {
@@ -26,6 +27,12 @@ export const routes = [
   {
     path: "/admin-dashboard",
     Component: AdminDasboard,
+    isProtected: true,
+    isExact: true,
+  },
+  {
+    path: "/preview",
+    Component: PreviewPage,
     isProtected: true,
     isExact: true,
   },

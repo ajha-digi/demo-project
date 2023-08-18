@@ -22,7 +22,7 @@ function Navbar() {
 
   const filteredNavLists = navLists.filter(({ title }) => {
     if (authToken && user) {
-      return title === "Admin Dasboard";
+      return title === "Admin Dasboard" || title === "Preview";
     }
     return title === "Login";
   });

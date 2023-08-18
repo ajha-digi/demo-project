@@ -6,6 +6,7 @@ import { useAuth } from "../Hooks/AuthHook";
 export function Protected({ isProtected, children }) {
   const navigate = useNavigate();
   const { authToken, user } = useAuth();
+
   useEffect(() => {
     if (isProtected && !authToken && !user) {
       navigate("/login");

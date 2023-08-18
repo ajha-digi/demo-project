@@ -34,10 +34,10 @@ const AdminDasboard = () => {
 
   useEffect(() => {
     if (pages && pages.length) {
-      const pageArray = pages.map(item => {
-        return {value: item.page, text: capitalizeAndReplace(item.page)}
+      const pageArray = pages.map((item) => {
+        return { value: item.page, text: capitalizeAndReplace(item.page) };
       });
-      setPageLists(pageArray)
+      setPageLists(pageArray);
     }
   }, [pages]);
 
