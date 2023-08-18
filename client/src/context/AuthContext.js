@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [data, setData] = useState([]);
   const [recentlyUploadedData, setRecentlyUploadedData] = useState({});
+  const [pages, setPages] = useState([]);
 
   // Load user and token from session storage on app start
   useEffect(() => {
@@ -79,10 +80,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getPages = async () => {
+    try {
+      const response = await authService.getAllPageAndCategory();
+      setPages(response);
+    } catch (error) {
+      console.error("Failed to get All Page And Category:", error);
+    }
+  }
 
+  const value = { authToken, user, login, logout, register, submitAdminData, dynamicPageData, data, recentlyUploadedData, getPages, pages }
   return (
-    // <AuthContext.Provider value={{ authToken, user, login, logout, register, uploadImage, dynamicPageData, data }}>
-    <AuthContext.Provider value={{ authToken, user, login, logout, register, submitAdminData, dynamicPageData, data, recentlyUploadedData }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

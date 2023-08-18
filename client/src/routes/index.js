@@ -6,6 +6,12 @@ import Preview from "../components/Preview";
 
 export const routes = [
   {
+    path: "/",
+    Component: AdminDasboard,
+    isProtected: true,
+    isExact: true,
+  },
+  {
     path: "/login",
     Component: Login,
     isProtected: false,

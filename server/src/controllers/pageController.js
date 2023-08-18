@@ -28,3 +28,16 @@ export const getAllPagesByRoute = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching pages' });
   }
 };
+
+export const getAllPageAndCategory = async (req, res) => {
+  try {
+    const pages = await Page.find({}, "page category").exec();
+    const pageAndCategoryArray = pages.map(page => ({
+      page: page.page,
+      category: page.category
+    }));
+    res.status(200).json(pageAndCategoryArray);
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred while fetching data." });
+  }
+};

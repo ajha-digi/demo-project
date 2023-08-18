@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { getAllPagesByRoute } from "../controllers/pageController";
+import { getAllPagesByRoute, getAllPageAndCategory } from "../controllers/pageController";
 import { hashPassword } from "../middlewares/hashPassword";
 import { validateRegistration } from "../middlewares/validateRegistration";
 import { authenticateUser } from "../middlewares/authMiddleware";
@@ -12,6 +12,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 router.get("/pages/:route", getAllPagesByRoute);
+router.get("/page_name", getAllPageAndCategory);
 router.post("/register", hashPassword, validateRegistration, registerUser);
 router.post("/login", loginUser);
 router.post(

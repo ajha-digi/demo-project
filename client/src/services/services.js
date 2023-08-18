@@ -44,6 +44,15 @@ const authService = {
     }
   },
 
+  getAllPageAndCategory : async () => {
+    try {
+      const response = await axiosInstance.get(`${endPoint}/user/page_name`);
+      return response?.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
 };
 
 export default authService;

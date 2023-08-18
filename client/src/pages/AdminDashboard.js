@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../Hooks/AuthHook";
-import { capitalizeWords } from "../helper";
+import { capitalizeAndReplace, capitalizeWords } from "../helper";
 
 const AdminDasboard = () => {
-  const { authToken, submitAdminData, recentlyUploadedData } = useAuth();
+  const { authToken, submitAdminData, recentlyUploadedData, getPages, pages } =
+    useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,20 +15,11 @@ const AdminDasboard = () => {
     }
   }, [authToken]);
 
-  const [pageLists, setPageLists] = useState([
-    {
-      value: "home",
-      text: "Home",
-    },
-    {
-      value: "about-us",
-      text: "About Us",
-    },
-    {
-      value: "contact-us",
-      text: "Contact Us",
-    },
-  ]);
+  useEffect(() => {
+    getPages();
+  }, []);
+
+  const [pageLists, setPageLists] = useState([]);
   const [isAddPage, setIsAddPage] = useState(false);
   const [isCreatePage, setIsCreatePage] = useState(false);
   const [newPage, setNewPage] = useState("");
@@ -39,6 +31,15 @@ const AdminDasboard = () => {
     css: "",
     category: "a",
   });
+
+  useEffect(() => {
+    if (pages && pages.length) {
+      const pageArray = pages.map(item => {
+        return {value: item.page, text: capitalizeAndReplace(item.page)}
+      });
+      setPageLists(pageArray)
+    }
+  }, [pages]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
