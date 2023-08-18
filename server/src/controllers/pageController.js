@@ -5,25 +5,21 @@ export const getAllPagesByRoute = async (req, res) => {
     const route = req.params.route;
     const pages = await Page.find({ page: route });
 
-    const defaultContentType = 'image/jpeg';
+    // const defaultContentType = 'image/jpeg';
 
     // Modify the pages to customize the response format
     const modifiedPages = pages.map((page) => ({
       title: page.title,
       page: page.page,
-      flag: page.flag,
+      css: page.css,
       html: page.html,
-      updatedBy: {
-        _id: page.updatedBy._id,
-        username: page.updatedBy.username,
-        name: page.updatedBy.name,
-        updated_at: page.updatedBy.updated_at,
-      },
+      category: page.category,
+      updatedBy: JSON.parse(page.updatedBy),
 
 
     //  imageDataUrl: `data:${page.imageType || defaultContentType};base64,${Buffer.from(page.imageData).toString('base64')}`
 
-      imageDataUrl: `data:image/jpeg;base64,${page.imageData.toString('base64')}`,
+      // imageDataUrl: `data:image/jpeg;base64,${page.imageData.toString('base64')}`,
       // imageDataUrl: `data:${page.imageType ? page.imageType: defaultContentType};base64,${encodeURIComponent(page.imageData.toString('base64'))}`,
     }));
 

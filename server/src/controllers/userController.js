@@ -10,7 +10,6 @@ const { JWT_SECRET } = process.env;
 
 export const registerUser = async (req, res) => {
   try {
-
     const { username, name, email } = req.body;
     const newUser = new User({
       name,
@@ -25,7 +24,9 @@ export const registerUser = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(201).json({ message: "User registered successfully", token, user: username});
+    res
+      .status(201)
+      .json({ message: "User registered successfully", token, user: username });
   } catch (error) {
     res.status(500).json({ error: "An error occurred while registering" });
   }
@@ -40,14 +41,19 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ error: "User not found" });
     }
 
-    const isPasswordValid = await bcrypt.compare(String(password), user.password);
+    const isPasswordValid = await bcrypt.compare(
+      String(password),
+      user.password
+    );
 
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Invalid password" });
     }
 
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
-    res.status(200).json({ token, user: username });
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    res.status(200).json({ token, user: user.name });
   } catch (error) {
     res.status(500).json({ error: "An error occurred while logging in" });
   }

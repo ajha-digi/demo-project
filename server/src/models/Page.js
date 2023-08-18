@@ -10,7 +10,7 @@ const pageSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    flag: {
+    category: {
       type: String,
       required: false,
     },
@@ -18,11 +18,7 @@ const pageSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
-    imageData: {
-      type: Buffer,
-      required: true,
-    },
-    imageType : {
+    css : {
       type: String,
       required: false,
     },
