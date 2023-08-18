@@ -8,7 +8,7 @@ function Login() {
 
   useEffect(() => {
     if (authToken) {
-      navigate("/admin-dashboard");
+      navigate(-2);
     }
   }, [authToken]);
 
