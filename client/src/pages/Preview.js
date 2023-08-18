@@ -11,14 +11,14 @@ function Preview() {
   const [page, setPage] = useState("");
 
   useEffect(() => {
+    getPages();
+  }, []);
+
+  useEffect(() => {
     if (!authToken) {
       navigate("/login");
     }
   }, [authToken]);
-
-  useEffect(() => {
-    getPages();
-  }, []);
 
   useEffect(() => {
     if (pages && pages.length) {
@@ -28,8 +28,6 @@ function Preview() {
       setPageLists(pageArray);
     }
   }, [pages]);
-
-  console.log(page);
 
   return (
     <div style={{ minHeight: "75vh" }}>

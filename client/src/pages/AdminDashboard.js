@@ -10,14 +10,14 @@ const AdminDasboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    getPages();
+  }, []);
+
+  useEffect(() => {
     if (!authToken) {
       navigate("/login");
     }
   }, [authToken]);
-
-  useEffect(() => {
-    getPages();
-  }, []);
 
   const [pageLists, setPageLists] = useState([]);
   const [isAddPage, setIsAddPage] = useState(false);

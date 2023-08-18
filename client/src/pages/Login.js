@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../Hooks/AuthHook";
 import { useNavigate, Link } from "react-router-dom";
-import { setAuthToken } from "../services/axiosInterceptor";
 
 function Login() {
   const { authToken, login } = useAuth();
   const navigate = useNavigate();
-
-  if (authToken) {
-    setAuthToken(authToken);
-  }
 
   useEffect(() => {
     if (authToken) {
@@ -79,7 +74,7 @@ function Login() {
                 </div>
               </div>
               <span className="label-input100">
-              <Link to="/register">Register Yourself</Link>
+                <Link to="/register">Register Yourself</Link>
               </span>
             </form>
           </div>

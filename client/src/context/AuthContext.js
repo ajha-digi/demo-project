@@ -12,9 +12,7 @@ export const AuthProvider = ({ children }) => {
   // Load user and token from session storage on app start
   useEffect(() => {
     const savedToken = sessionStorage.getItem("authToken");
-    const savedUser = sessionStorage.getItem("user") !== "undefined" &&
-      JSON.parse(sessionStorage.getItem("user"));
-
+    const savedUser = sessionStorage.getItem("user") && JSON.parse(sessionStorage.getItem("user"));
     if (savedToken) {
       setAuthToken(savedToken);
       setUser(savedUser);

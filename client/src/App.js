@@ -7,6 +7,7 @@ import { Protected } from "./routes/ProtectedRoutes";
 import { routes } from "./routes";
 
 import "./App.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -26,9 +27,7 @@ function App() {
           />
         ))}
       </Routes>
-      <footer className="navbar">
-        Hi this is simple footer
-      </footer>
+      <Footer />
     </div>
   );
 }

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../Hooks/AuthHook";
-import { setAuthToken } from "../services/axiosInterceptor";
 
 
 function Registration() {
   const { authToken, register } = useAuth();
   const navigate = useNavigate();
-
-  if (authToken) {
-    setAuthToken(authToken);
-  }
-
+  
   useEffect(() => {
     if (authToken) {
       navigate("/admin-dashboard");
