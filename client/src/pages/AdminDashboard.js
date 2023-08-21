@@ -92,6 +92,11 @@ const AdminDasboard = () => {
     setNewPage("");
   };
 
+  const handleCancel=()=>{
+    setIsAddPage(false)
+    navigate("/")
+  }
+
   return (
     <>
       <div className="limiter">
@@ -130,13 +135,16 @@ const AdminDasboard = () => {
                   ) : (
                     !isCreatePage && (
                       <>
-                        <label htmlFor="Add new page">Select page</label>
+                        <label htmlFor="Add new page"> Add new page</label>
                         <input
-                          placeholder="Add new page"
+                          placeholder="Page name"
                           onChange={(e) => setNewPage(e.target.value)}
                         />
                         <button onClick={(e) => handleClick(e, "create")}>
                           Create New page
+                        </button>
+                        <button onClick={handleCancel}>
+                         Cancel
                         </button>
                       </>
                     )
@@ -200,7 +208,7 @@ const AdminDasboard = () => {
                 </div>
               </div>
 
-              <button class="button" type="submit">
+              <button className="button" type="submit">
                 Submit
               </button>
             </form>
