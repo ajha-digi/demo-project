@@ -22,6 +22,7 @@ li a {
 .limiter {
   min-height: 75vh;
   background-color: #90bcd25e;
+  padding: 40px
 }
 
 .limiter-register {
@@ -212,16 +213,41 @@ li a {
   padding: 0 7px 0 43px;
 }
 
-#page {
+.page {
   width: 200px;
-  height: 30px;
+  height: 25px;
 }
 
 .row{
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 20px;
+  flex-wrap: wrap;  
 }
 .col{
   display: flex;
+  margin: 10px;
+  justify-content: space-evenly;
+
+}
+
+label {
+  padding: 0px 10px 0px 10px
+}
+
+.button{
+  background: black;
+  height: 40px;
+  width:150px;
+  color:white;
+  margin-left :50px;
+  font-size:15px
+}
+
+.selectPage{
+  margin:  10px 30px 10px 2px
+}
+
+#category{
+  width: 50px
 }

@@ -30,9 +30,10 @@ function Preview() {
   }, [pages]);
 
   return (
-    <div style={{ minHeight: "75vh" }}>
+    <div style={{ minHeight: "75vh", padding: "40px 0px" }}>
       <label htmlFor="page">Select page</label>
       <select
+        className="selectPage"
         name="page"
         id="page"
         value={page}

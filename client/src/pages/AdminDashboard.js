@@ -113,7 +113,7 @@ const AdminDasboard = () => {
                   <label htmlFor="page">Select page</label>
                   <select
                     name="page"
-                    id="page"
+                    className="page"
                     value={formData.page}
                     onChange={handleInputChange}
                   >
@@ -142,9 +142,12 @@ const AdminDasboard = () => {
                     )
                   )}
                 </div>
+              </div>
+              <div className="row" id="titleInput">
                 <div className="col">
                   <label htmlFor="title">Title</label>
                   <input
+                    className="page"
                     placeholder="Enter title"
                     name="title"
                     value={formData.title}
@@ -154,30 +157,9 @@ const AdminDasboard = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <label htmlFor="html">Html code</label>
-                  <textarea
-                    name="html"
-                    value={formData.html}
-                    onChange={handleInputChange}
-                    rows="10"
-                    cols="35"
-                  />
-                </div>
-                <div className="col">
-                  <label htmlFor="css">css code</label>
-                  <textarea
-                    name="css"
-                    value={formData.css}
-                    onChange={handleInputChange}
-                    rows="10"
-                    cols="35"
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col">
                   <label htmlFor="ctegory">Select Category</label>
                   <select
+                    className="page"
                     name="category"
                     id="category"
                     value={formData.category}
@@ -192,7 +174,35 @@ const AdminDasboard = () => {
                   </select>
                 </div>
               </div>
-              <button type="submit"> Submit</button>
+
+              <div className="row">
+                <div className="col">
+                  <label htmlFor="html">Html code</label>
+                  <textarea
+                    name="html"
+                    value={formData.html}
+                    onChange={handleInputChange}
+                    rows="10"
+                    cols="35"
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col">
+                  <label htmlFor="css">CSS code</label>
+                  <textarea
+                    name="css"
+                    value={formData.css}
+                    onChange={handleInputChange}
+                    rows="10"
+                    cols="35"
+                  />
+                </div>
+              </div>
+
+              <button class="button" type="submit">
+                Submit
+              </button>
             </form>
           </div>
         </div>
