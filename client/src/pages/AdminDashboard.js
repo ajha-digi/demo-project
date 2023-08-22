@@ -94,7 +94,7 @@ const AdminDasboard = () => {
 
   const handleCancel=()=>{
     setIsAddPage(false)
-    navigate("/")
+    navigate("/admin-dashboard")
   }
 
   return (
